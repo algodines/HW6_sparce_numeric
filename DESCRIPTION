@@ -1,0 +1,21 @@
+Package: sparseNumeric
+Title: Sparse Numberic Vector Class & Operations
+Version: 0.0.0.9000
+Authors@R: 
+    person("Annika", "Godines", , "algodines20@gmail.com", role = c("aut", "cre"))
+Description: The goal of 'sparseNumeric' is to provide an S4 class for 
+            representing sparse numeric vectors - that is, vectors that contain 
+            many zeros - and to turn the sparse-vector code from HW5 into a 
+            complete, well-documented R package.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+Imports:
+  methods, 
+  graphics
+Suggests: 
+    testthat (>= 3.0.0),
+    covr,
+    pkgdown
+Config/testthat/edition: 3

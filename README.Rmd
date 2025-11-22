@@ -1,0 +1,106 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+## sparseNumeric
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of 'sparseNumeric' is to provide an S4 class for representing sparse numeric vectors - that is, vectors that contain many zeros - and to turn the sparse-vector code from HW5 into a complete, well-documented R package. 
+
+This package stors sparse vectors efficiently by keeping only the non-zero values and their positions. It supports arithmetic operations (ex. addition, multiplication, etc.) and dot product directly on the sparse representation, so the full vector never needs to be rebulit. 
+
+In addition to basic arithmetic, the package also includes useful statistical methods:
+
+- 'mean()' - computes the mean of the vector, counding all zeros, without converting the vector back to dense form.
+- 'norm()' - computes the Euclidean norm (the square root of the sum of squared values)
+- 'standardize()' - standardizes the vector by subtracting its mean and dividing by its standard deviation. 
+
+All methods operate **directly on the sparse structure**, making them both efficient and memory-friendly. The package includes roxygen2 documentation unit tests, a proper DESCRIPTION file, and Github Actions to ensure the package passes R CMD check. 
+
+Along with these methods, the package includes:
+
+- roxygen2 documentation for the class and all methods  
+- a clean DESCRIPTION file with real metadata  
+- unit tests written with **testthat**, reaching at least **90% coverage**  
+- a passing **R CMD check**  
+- a GitHub Actions workflow to run checks on every push  
+- a `pkgdown` website documenting all functions  
+
+## Installation
+
+You can install the development version of sparseNumeric from Github:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("algodines/HW6_sparce_numeric")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(sparseNumeric)
+
+# Create a regular R vector
+v <- c(0, 0, 5, 0, 3)
+
+# Convert to sparse_numeric
+s <- as(v, "sparse_numeric")
+
+# Display the sparse object
+s
+
+# Compute statistics
+mean(s)
+norm(s)
+standardize(s)
+```
+
+You can also perform arithemtic using the sparse methods:
+
+```{r}
+x <- as(c(0, 1, 0, 2), "sparse_numeric")
+y <- as(c(3, 0, 4, 0), "sparse_numeric")
+
+x + y     # sparse addition
+x - y     # sparse subtraction
+x * y     # elementwise product
+sparse_crossprod(x, y)  # dot product
+```
+
+Why use README.Rmd?
+'`README.Rmd` is helpful because:
+- you can include R code chunks that run automatically
+- output (numbers, tables,plots) appears directly in your README
+- your README stays in sync with your actual code
+- you can regenerate it at anytime with:
+
+```r
+devtools::build_readme()
+```
+
+For example, here is a small built-in plot:
+
+```{r cars}
+summary(cars)
+```
+
+You can also embed plots, for example:
+
+```{r pressure, echo = FALSE}
+plot(pressure)
+```
